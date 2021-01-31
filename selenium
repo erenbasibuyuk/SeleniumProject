@@ -1,0 +1,85 @@
+package com.SeleniumTest;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Main {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        //Defining the driver and locating where it located in the computer. Also maximize the browser
+        System.setProperty("webdriver.chrome.driver", "/Users/erenbasibuyuk/Desktop/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        //Going thru to the website
+        String website = "https://www.gittigidiyor.com";
+        driver.get(website);
+
+        //Clicking to profile section and also waits for a second
+        driver.findElement(By.name("profile")).click();
+        Thread.sleep(1000);
+
+        //Going thru to the login page and also waits for a second
+        driver.get("https://www.gittigidiyor.com/uye-girisi");
+        Thread.sleep(1000);
+
+        //Writing username
+        String username ="testaccount123abc123@yahoo.com";
+        driver.findElement(By.name("kullanici")).sendKeys(username);
+
+        //Writing password and also waits for a second
+        String password ="testhesabi1";
+        driver.findElement(By.name("sifre")).sendKeys(password);
+        Thread.sleep(1000);
+
+        //Clicking to login button and also waits for a second
+        driver.findElement(By.id("gg-login-enter")).click();
+        Thread.sleep(1000);
+
+        //Searching for the word that given by user and also waits for a second
+        String searchingWord = "bilgisayar";
+        driver.findElement(By.name("k")).sendKeys(searchingWord);
+        Thread.sleep(1000);
+
+        //Clicking enter by keyboard and also waits for three seconds
+        driver.findElement(By.name("k")).sendKeys(Keys.ENTER);
+        Thread.sleep(3000);
+
+        //Clicking the random item and also waits for two seconds
+        String randomItem ="item-info-block-632976036";
+        driver.findElement(By.id(randomItem)).click();
+        Thread.sleep(2000);
+
+        //Adding item to the basket and also waits for a second
+        driver.findElement(By.id("add-to-basket")).sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
+
+        //Refreshing the page for make it clear
+        driver.navigate().refresh();
+
+        //Clicking the basket icon and also waits for three seconds
+        driver.findElement(By.className("basket-icon-container")).click();
+        Thread.sleep(3000);
+
+        //Adding the same item one more time to the basket and also waits for three seconds
+        String increaseItemNumber ="//span[@class='plus icon-plus gg-icon gg-icon-plus']";
+        driver.findElement(By.xpath(increaseItemNumber)).click();
+        Thread.sleep(3000);
+
+        //Deleting all items and also waits for a second
+        String deleteItems ="//span[@class='hidden-m']";
+        driver.findElement(By.xpath(deleteItems)).click();
+        Thread.sleep(1000);
+
+        //Going back to main page and also waits for a second
+        String goBackToMainPage ="//a[@href='https://www.gittigidiyor.com']";
+        driver.findElement(By.xpath(goBackToMainPage)).click();
+        Thread.sleep(1000);
+
+        //Clicking the profile section
+        driver.findElement(By.name("profile")).click();
+    }
+}
